@@ -33,10 +33,21 @@
   }
 }
 
-.card {
+.tasks {
   padding: 2em;
 }
 
+.task {
+  display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.borrar{
+  background-color: #dc3545;
+}
+.check{background-color: #198754;}
 .read-the-docs {
   color: #888;
 }
