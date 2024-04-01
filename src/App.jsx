@@ -10,6 +10,16 @@ const App = () => {
     { id: 3, text: 'Hacer ejercicio', completed: false }
   ]);
 
+
+  const AddTask = (newtask) => {
+    const newTaskObject = {
+      id: newtask + tasks.length + 1, //para que no se repita el id
+      text: newtask,
+      completed: false
+    }
+    setTasks([...tasks, newTaskObject]);
+  }
+
   const updateCheck = (taskId) =>{
     const actualizar = tasks.map(task => { 
       if (task.id === taskId) {
@@ -28,12 +38,10 @@ const App = () => {
   return (
     <>
     <h1>Lista de tareas</h1>
-    <AddTaskForm tasks={tasks} setTasks={setTasks} />
+    <AddTaskForm AddTask={AddTask}  />
     <ul className="tasks">
       {tasks.map((task) => (
-        <li key={task.id} className="task">
-          <Tarea id={task.id} text={task.text} completed={task.completed} onToggle={updateCheck} onDelete={deleteTask} />
-        </li>
+          <Tarea id={task.id} text={task.text} completed={task.completed} onToggle={updateCheck} deleteTask={deleteTask} />
       ))}
     </ul>
     </>

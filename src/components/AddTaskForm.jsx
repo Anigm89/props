@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 
-function AddTaskForm({tasks, setTasks}){
+function AddTaskForm({AddTask}){
 
     const [newtask, setNewtask] = useState('');
 
@@ -9,28 +9,20 @@ function AddTaskForm({tasks, setTasks}){
         setNewtask(e.target.value)
     };
 
-    const AddTask = (e) =>{
+    const handleSubmit = (e) =>{
         e.preventDefault();
-        if(newtask !== ''){
-            const newTaskObject = {
-                id: tasks.length + 1,
-                text: newtask,
-                completed: false
-            }
-        setTasks([...tasks, newTaskObject]);
+        if( !newtask.trim() ) return;
+    
+        AddTask(newtask)
         setNewtask('');
-        }
-
     }
 
 
-    return (
-        <>
-        <form onSubmit={AddTask}>
+    return (  
+        <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Agregar nueva tarea" value={newtask} onChange={handleChange}  />
             <button type="submit" >Agregar</button>
         </form>
-        </>
     )
 }
 
